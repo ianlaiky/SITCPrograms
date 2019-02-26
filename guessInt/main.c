@@ -10,7 +10,9 @@ int main() {
     // do while loop to check for out of range values
     do {
         printf("Player 1, enter a number between 1 and 1000:");
+
         scanf("%d", &player1No);
+
 
         if (player1No > 1000 || player1No < 0) {
             printf("That number is out of range.");
