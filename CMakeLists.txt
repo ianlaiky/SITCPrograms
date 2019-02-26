@@ -3,4 +3,4 @@ project(CPrograms C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(CPrograms main.c)
+add_executable(CPrograms guessInt/main.c)
