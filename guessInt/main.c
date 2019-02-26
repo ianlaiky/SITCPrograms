@@ -1,24 +1,30 @@
 #include <stdio.h>
-// do this
-#define maxGuess 6
+// constants
+#define maxGuess 10
+#define maxRangeC 1000
+#define minRangeC 1
+
 
 int main() {
 
     int player2Round = maxGuess;
     int player1No;
+    int maxRange = maxRangeC;
+    int minRange = minRangeC;
+
 
     // do while loop to check for out of range values
     do {
-        printf("Player 1, enter a number between 1 and 1000:");
+        printf("Player 1, enter a number between %d and %d",minRange,maxRange);
 
         scanf("%d", &player1No);
 
 
-        if (player1No > 1000 || player1No < 0) {
+        if (player1No > maxRange || player1No < minRange) {
             printf("That number is out of range.");
         }
 
-    } while (player1No > 1000 || player1No < 0);
+    } while (player1No > maxRange || player1No < minRange);
 
 
     int player1wins = 0;
@@ -31,7 +37,7 @@ int main() {
         scanf("%d", &player2Guess);
 
         // out of range checking
-        if (player2Guess > 1000 || player2Guess < 1) {
+        if (player2Guess > maxRange || player2Guess < minRange) {
             continue;
             // if second player guess is higher then first player input
         } else if (player2Guess > player1No) {
