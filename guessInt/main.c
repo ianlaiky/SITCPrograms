@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+// do this
 #define maxGuess 6
 
 int main() {
