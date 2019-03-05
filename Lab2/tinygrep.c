@@ -19,14 +19,21 @@ int stringCompare(char userText[], char pattern[]) {
     int patternCharCounted = 0;
     int indexOfFirstFound = -1;
     for (int i = 0; i < pattern_length; ++i) {
-        for (int j = i; j < userText_length; ++j) {
-//            if (pattern[i] == userText[j]) {
-//                patternCharCounted = patternCharCounted + 1;
-//                if (patternCharCounted + 1 == pattern_length) {
-//                    indexOfFirstFound = j - pattern_length + 2;
-//                }
-//                break;
-//            }
+
+        int jlocate=0;
+        for (int j = jlocate; j < userText_length; ++j) {
+
+
+
+            //problem
+            if (pattern[i] == userText[j]) {
+                jlocate=j;
+                patternCharCounted = patternCharCounted + 1;
+                if (patternCharCounted + 1 == pattern_length) {
+                    indexOfFirstFound = j - pattern_length + 2;
+                }
+                break;
+            }
         }
     }
 //    printf("%d",patternCharCounted);
