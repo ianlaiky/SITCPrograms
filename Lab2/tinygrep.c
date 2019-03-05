@@ -12,6 +12,10 @@ int stringCompare(char userText[], char pattern[]) {
     pattern_length = strlen(pattern);
     userText_length = strlen(userText);
 
+    printf("Pattern len original");
+    printf("%d",pattern_length);
+    printf("\n");
+
     if (pattern_length > userText_length) {
         return -1;
     }
@@ -20,12 +24,18 @@ int stringCompare(char userText[], char pattern[]) {
     int indexOfFirstFound = -1;
 
     for (int i = 0; i <userText_length-1; ++i) {
-      if(userText[i]==pattern[0]){
-          patternCharCounted = patternCharCounted+1;
-          for (int j = 1; j < pattern_length-1; ++j) {
+        printf("%d",patternCharCounted);
 
-              printf("initial");
+      if(userText[i]==pattern[0]){
+//          patternCharCounted = patternCharCounted+1;
+          for (int j = 0; j < pattern_length-1; ++j) {
+//
+              printf("initial:");
+
               printf("%c",userText[i]);
+              printf("\n");
+              printf("Pattern cmp:");
+              printf("%c",pattern[j]);
               printf("\n");
 
               if(userText[i+j]==pattern[j]){
@@ -36,13 +46,10 @@ int stringCompare(char userText[], char pattern[]) {
                   printf("\n");
                   indexOfFirstFound = i;
                   patternCharCounted = patternCharCounted+1;
-                  break;
-              }
 
+              }
           }
       }
-
-
     }
 
 
