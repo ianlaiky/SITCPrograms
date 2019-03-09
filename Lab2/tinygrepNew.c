@@ -18,8 +18,15 @@ int stringCompare(char userText[], char pattern[]) {
 
     puts("Length of pattern: ");
     printf("%d", pattern_length);
-    puts(userText);
-    puts(pattern);
+
+    for (int i = 0; i < strlen(userText)-1; ++i) {
+        printf("%c",userText[i]);
+
+    } for (int i = 0; i < strlen(pattern)-1; ++i) {
+        printf("%c",pattern[i]);
+    }
+
+
     printf("\n");
 
 //    char *ret;
@@ -55,7 +62,6 @@ int main() {
 
     puts("Enter Pattern");
     fgets(pattern, 255, stdin);
-
 
 
 //    puts("Should the match be case sensitive? Yes/No");
