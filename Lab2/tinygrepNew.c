@@ -19,11 +19,15 @@ int stringCompare(char userText[], char pattern[]) {
     puts("Length of pattern: ");
     printf("%d", pattern_length);
 
-    for (int i = 0; i < strlen(userText)-1; ++i) {
-        printf("%c",userText[i]);
+//    for (int i = 0; i < strlen(userText)-1; ++i) {
+//        printf("%c",userText[i]);
+//
+//    } for (int i = 0; i < strlen(pattern)-1; ++i) {
+//        printf("%c",pattern[i]);
+//    }
 
-    } for (int i = 0; i < strlen(pattern)-1; ++i) {
-        printf("%c",pattern[i]);
+    for (int i = 0; i < strlen(userText); ++i) {
+
     }
 
 
@@ -52,13 +56,17 @@ int main() {
     char userText[255];
     char pattern[255];
     char caseSensitive[30];
+//
+//    char *buff = "this is a test string";
+//    char subbuff[5];
+//    memcpy( subbuff, &buff[10], 4 );
+//    subbuff[4] = '\0';
+//    puts(subbuff);
+
+
 
     puts("Enter input: ");
     fgets(userText, 255, stdin);
-
-
-
-
 
     puts("Enter Pattern");
     fgets(pattern, 255, stdin);
