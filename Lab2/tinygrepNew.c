@@ -12,14 +12,7 @@ int main() {
 
     char userText[255];
     char pattern[255];
-    char caseSensitive[30];
-//
-//    char *buff = "this is a test string";
-//    char subbuff[5];
-//    memcpy( subbuff, &buff[10], 4 );
-//    subbuff[4] = '\0';
-//    puts(subbuff);
-
+    char caseSensitive;
 
 
     puts("Enter input: ");
@@ -28,110 +21,86 @@ int main() {
     puts("Enter Pattern");
     fgets(pattern, 255, stdin);
 
-
-//    puts("Should the match be case sensitive? Yes/No");
-//    fgets(caseSensitive,30,stdin);
-
-
-
+    int boolCasesel = 0;
+    do {
+        puts("Should the match be case sensitive? Y/N");
+        caseSensitive = (char) getchar();
 
 
+        if (tolower(caseSensitive) == 'n') {
+            for (int i = 0; userText[i]; i++) {
+                userText[i] = (char) tolower(userText[i]);
+            }
+            boolCasesel = 1;
+        } else if (tolower(caseSensitive) == 'y') {
+            boolCasesel = 1;
 
+        } else {
+            printf("Invalid Character Inputted!\n");
+        }
 
-
-//    for (int i = 0; i < strlen(userText)-1; ++i) {
-//        printf("%c",userText[i]);
-//
-//    } for (int i = 0; i < strlen(pattern)-1; ++i) {
-//        printf("%c",pattern[i]);
-//    }
-//
-//    for (int i = 0; i < strlen(userText); ++i) {
-//
-//    }
-
-
-    printf("\n");
+    } while (boolCasesel == 0);
 
     userText[strcspn(userText, "\r\n")] = 0;
     pattern[strcspn(pattern, "\r\n")] = 0;
-
-    puts(userText);
-    puts(pattern);
-
 
     int pattern_length, userText_length;
 
     pattern_length = strlen(pattern);
     userText_length = strlen(userText);
 
-    puts("Length of pattern: ");
-    printf("%d", pattern_length);
-    printf("\n");
-
-//    char *ret;
-//
-//
-//    printf("%d",strlen(pattern));
-
-//    ret = strstr(userText, pattern);
-//    puts("Match");
-//    puts(ret);
 
     int bool = 0;
-    int boolIndex;
+    int boolIndex = 0;
 
     for (int i = 0; i < userText_length; ++i) {
 
-        if(bool==1){
+        // if substring match before, break the loop
+        if (bool == 1) {
             break;
         }
 
         char subbuff[pattern_length];
+        // substring copy
         memcpy(subbuff, &userText[i], (size_t) pattern_length);
-//        puts("Substring");
-//        puts(subbuff);
 
-//      handle .
+//      handling of '.'
         char dotsbuffer[pattern_length];
         for (int j = 0; j < strlen(subbuff); ++j) {
 
+            if (subbuff[j] == ' ') {
 
-            if(pattern[j]=='.'){
-                dotsbuffer[j]='.';
-            }else{
-                dotsbuffer[j]=subbuff[j];
+                dotsbuffer[j] = '_';
+            } else if (pattern[j] == '.') {
+                dotsbuffer[j] = '.';
+            } else {
+                dotsbuffer[j] = subbuff[j];
             }
         }
-//        puts("NEW DORTS SHIT");
-//        printf("%s",dotsbuffer);
+
 
         char *ret;
+
+        // checking string is in string
         ret = strstr(dotsbuffer, pattern);
-//        puts("Match");
-//        printf("%s",ret);
-//        puts("-----------");
+
+        // if string found is NOT NULL
         if (ret != NULL) {
 
+            // setting boolean value to 1
+            bool = 1;
 
-
-            puts("Index position");
-            printf("%d", i);
-            printf("\n");
-
-            bool=1;
+            //saving index to variable outside current scope
             boolIndex = i;
         }
-
-
     }
 
+    if (bool == 1) {
+        printf("Matches at position %d", boolIndex);
 
-    if(bool==1){
-        printf("Matches at position %d",boolIndex);
-
+    } else {
+        printf("No match.");
     }
-
 
     return 0;
 
