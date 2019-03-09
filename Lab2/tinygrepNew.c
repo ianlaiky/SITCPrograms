@@ -7,49 +7,6 @@
 #include <ctype.h>
 
 
-int stringCompare(char userText[], char pattern[]) {
-
-
-    int pattern_length, userText_length;
-
-    pattern_length = strlen(pattern);
-    userText_length = strlen(userText);
-
-
-    puts("Length of pattern: ");
-    printf("%d", pattern_length);
-
-//    for (int i = 0; i < strlen(userText)-1; ++i) {
-//        printf("%c",userText[i]);
-//
-//    } for (int i = 0; i < strlen(pattern)-1; ++i) {
-//        printf("%c",pattern[i]);
-//    }
-
-    for (int i = 0; i < strlen(userText); ++i) {
-
-    }
-
-
-    printf("\n");
-
-//    char *ret;
-//    ret = strstr(userText, pattern);
-//    puts(ret);
-
-
-
-//    for (int i = 0; i < userText_length; ++i) {
-//        for (int j = 0; j < pattern_length; ++j) {
-//
-//        }
-//
-//    }
-
-
-}
-
-
 int main() {
 
 
@@ -79,7 +36,101 @@ int main() {
 
 
 
-    stringCompare(userText, pattern);
+
+
+
+//    for (int i = 0; i < strlen(userText)-1; ++i) {
+//        printf("%c",userText[i]);
+//
+//    } for (int i = 0; i < strlen(pattern)-1; ++i) {
+//        printf("%c",pattern[i]);
+//    }
+//
+//    for (int i = 0; i < strlen(userText); ++i) {
+//
+//    }
+
+
+    printf("\n");
+
+    userText[strcspn(userText, "\r\n")] = 0;
+    pattern[strcspn(pattern, "\r\n")] = 0;
+
+    puts(userText);
+    puts(pattern);
+
+
+    int pattern_length, userText_length;
+
+    pattern_length = strlen(pattern);
+    userText_length = strlen(userText);
+
+    puts("Length of pattern: ");
+    printf("%d", pattern_length);
+    printf("\n");
+
+//    char *ret;
+//
+//
+//    printf("%d",strlen(pattern));
+
+//    ret = strstr(userText, pattern);
+//    puts("Match");
+//    puts(ret);
+
+    int bool = 0;
+    int boolIndex;
+
+    for (int i = 0; i < userText_length; ++i) {
+
+        if(bool==1){
+            break;
+        }
+
+        char subbuff[pattern_length];
+        memcpy(subbuff, &userText[i], (size_t) pattern_length);
+//        puts("Substring");
+//        puts(subbuff);
+
+//      handle .
+        char dotsbuffer[pattern_length];
+        for (int j = 0; j < strlen(subbuff); ++j) {
+
+
+            if(pattern[j]=='.'){
+                dotsbuffer[j]='.';
+            }else{
+                dotsbuffer[j]=subbuff[j];
+            }
+        }
+//        puts("NEW DORTS SHIT");
+//        printf("%s",dotsbuffer);
+
+        char *ret;
+        ret = strstr(dotsbuffer, pattern);
+//        puts("Match");
+//        printf("%s",ret);
+//        puts("-----------");
+        if (ret != NULL) {
+
+
+
+            puts("Index position");
+            printf("%d", i);
+            printf("\n");
+
+            bool=1;
+            boolIndex = i;
+        }
+
+
+    }
+
+
+    if(bool==1){
+        printf("Matches at position %d",boolIndex);
+
+    }
 
 
     return 0;
