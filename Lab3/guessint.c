@@ -21,6 +21,17 @@ int main() {
         puts("Player 1, enter a word of no more than 12 letters:");
         fgets(guess, MAX_LEN, stdin);
 
+        int flushOff = 0;
+        for (int i = 0; guess[i]; i++) {
+            if(guess[i]=='\n'){
+                flushOff=1;
+            }
+        }
+        if(flushOff==0){
+            fflush(stdin);
+        }
+
+
         int checkVal = -1;
         for (int i = 0; guess[i]; i++) {
             if (!isalpha(guess[i])) {
@@ -88,7 +99,7 @@ int main() {
 
         if (guessCorrect == strlen(guess)) {
             win = 0;
-            puts("Player 2 wins.");
+
             break;
         } else {
             win = 1;
@@ -96,9 +107,17 @@ int main() {
         }
 
     } while (triesLeft > 0);
+    printf("\nPlayer 2 has so far guessed: ");
+
+    for (int i = 0; i < strlen(p2Guess); i++) {
+
+        printf("%c ", p2Guess[i]);
+    }
 
     if (win == 1) {
-        puts("Player 1 wins.");
+        puts("\nPlayer 1 wins.");
+    } else{
+        puts("\nPlayer 2 wins.");
     }
 
 
