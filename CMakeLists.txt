@@ -3,4 +3,4 @@ project(CPrograms C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(CProgram Lab2/tinygrep.c)
+add_executable(CProgram Lab3/guessint.c)
