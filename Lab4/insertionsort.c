@@ -31,6 +31,7 @@ int main() {
     return 0;
 }
 
+
 Node *search_list(Node *head, int target) {
     Node *temp = head;
     while (temp != NULL && temp->data != target)
