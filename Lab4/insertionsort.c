@@ -25,8 +25,8 @@ int main() {
     node_ptr = node_ptr->next;
     printf("node 2 data = %d\n", node_ptr->data);
 
-    temp = search_list(head, 10);
-    printf("Node %d found at %p\n", 10, temp);
+    temp = search_list(&node1, 10);
+    printf("Node %d found at %p\n", 50, temp);
 
     return 0;
 }
