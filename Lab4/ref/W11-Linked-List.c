@@ -11,14 +11,14 @@ Node *create_node(int data);
 Node *insert_at_head(Node *head, Node *new_node);
 Node *insert_at_tail(Node *head, Node *new_node);
 Node *delete_node(Node *head, Node *node_ptr);
-Node *print_list(Node *head, const char *text);
+Node *print_list(Node *head, char *text);
 Node *free_list(Node *head);
 
 int main() {
-	Node *head = NULL;	
+	Node *head = NULL;
 	Node *new_node;
 	Node *temp;
-	
+
 	/* add one node */
 	new_node = create_node(100);
 	head = insert_at_head(head, new_node);
@@ -28,24 +28,24 @@ int main() {
 	new_node = create_node(200);
 	head = insert_at_head(head, new_node);
 	print_list(head, "After two node");
-	
+
 	/* add another node */
 	new_node = create_node(300);
 	head = insert_at_head(head, new_node);
 	print_list(head, "After three node");
-	
+
 	/* search for node 200 */
 	temp = search_list(head, 200);
-	printf("Node %d found at %p\n", 200, temp);	
+	printf("Node %d found at %p\n", 200, temp);
 
 	/* delete node 200 */
 	head = delete_node(head, temp);
 	print_list(head, "After deleteing 200");
-	
+
 	/* deleting head */
 	head = delete_node(head, head);
 	print_list(head, "After deleteing head");
-	
+
 	/* search for node 400 */
 	temp = search_list(head, 400);
 	printf("Node %d found at %p\n", 400, temp);
@@ -54,7 +54,7 @@ int main() {
 	new_node = create_node(500);
 	head = insert_at_tail(head, new_node);
 	print_list(head, "After inserting 500 at the tail");
-	
+
 	head = free_list(head);
 	print_list(head, "After freeing the list");
 	return 0;
@@ -100,12 +100,12 @@ Node *delete_node(Node *head, Node *node_ptr) {
 	if (head == NULL) { //if head is NULL
 		return NULL;
 	}
-	
+
 	if (head == node_ptr) { //if head is the targeted node to change
 		head = head->next; //get head's nxt & return 'new head'
 		free(node_ptr);
 		return head;
-	}	
+	}
 
 	Node *prev_ptr = head;
 	while (prev_ptr->next != NULL && prev_ptr->next != node_ptr) {
@@ -129,13 +129,13 @@ Node *print_list(Node *head, char *text) {
 		temp = temp->next;
 	}
 	printf("\n");
-	return head;	
+	return head;
 }
 
 /* de-allocate list */
 Node *free_list(Node *head) {
 	Node *temp = head;
-	
+
 	while (temp != NULL) {
 		temp = temp->next;
 		free(head);

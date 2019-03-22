@@ -1,40 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
-typedef struct node_struct {
-    int data;
+#define SIZE 32
+
+struct node_struct
+{
+    char *data[SIZE];
     struct node_struct *next;
-} Node;
+}Node;
 
-Node *search_list(Node *head, int target);
+int checkError(char word2[]);
 
 int main() {
-    Node *head = NULL;
-    Node *temp;
 
-    Node node1 = {15, NULL};
-    Node node2 = {10, NULL};
-    Node node3 = {50, NULL};
-    node1.next = &node2;
-    node2.next = &node3;
+    char userIn[SIZE];
+    int errorRrt = 0;
 
-    printf("Node1 data = %d\n", node1.data);
-    printf("Node1 next = %d\n", node1.next);
+    do{
+        printf("Enter a character not more then 32 characters");
+        scanf("%s",&userIn);
 
-    Node *node_ptr = &node1;
-    node_ptr = node_ptr->next;
-    printf("node 2 data = %d\n", node_ptr->data);
+        errorRrt = checkError(userIn);
 
-    temp = search_list(&node1, 10);
-    printf("Node %d found at %p\n", 50, temp);
+        printf("\nReturn error \n%d",errorRrt);
+
+    }while(errorRrt!=0);
+
+
+
+
+
+
 
     return 0;
 }
 
-
-Node *search_list(Node *head, int target) {
-    Node *temp = head;
-    while (temp != NULL && temp->data != target)
-        temp = temp->next;
-    return temp;
+int checkError(char word2[])
+{
+    if (strcmp(word2, "***") == 0)
+    {
+        return 2;
+    }
+    if (strlen(word2) > 32)
+    {
+        return 1;
+    }
+    for (int i = 0; i < strlen(word2); i++)
+    {
+        if (word2[i] != 39 && word2[i] != 45 && (!isalpha(word2[i])))
+        {
+            return 1;
+        }
+    }
+    return 0;
 }
