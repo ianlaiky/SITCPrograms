@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define SIZE 32
 #define QUIT "***"
@@ -16,7 +17,7 @@ typedef struct node *NodePointer;
 
 void insertIntoLinkedList(char[], NodePointer *);
 void displayLinkedList(NodePointer);
-
+int checkError(char word2[]);
 int main()
 {
     char word[SIZE];
@@ -55,8 +56,8 @@ void insertIntoLinkedList(char word2[], NodePointer *head2)
 
     if (NULL != newNode)
     {
-        strcpy(newNode->data, word2);
-        while (NULL != current && strcmp(word2, current->data) > 0)
+        strcpy((char *) newNode->data, word2);
+        while (NULL != current && strcmp(word2, (const char *) current->data) > 0)
         {
             previous = current;
             current = current->next;
@@ -84,7 +85,7 @@ void displayLinkedList(NodePointer current)
     printf("\nCurrent linked list items:\n");
     while (current != NULL)
     {
-        printf(">%s\n", current->data);
+        printf(">%s\n", (char *) current->data);
         current = current->next;
     }
     printf("\n");

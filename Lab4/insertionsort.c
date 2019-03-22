@@ -31,16 +31,19 @@ int main() {
         Node *pointerToNode = NULL;
         do {
             printf("Enter a character not more then 32 characters");
-            scanf("%s", &userIn);
-
+            fgets(userIn, SIZE, stdin);
+            userIn[strcspn(userIn, "\r\n")] = 0;
             errorRrt = checkError(userIn);
+            if(errorRrt==2){
+                break;
+            }
 
-            printf("\nReturn error \n%d", errorRrt);
-        } while (errorRrt != 0);
+            printf("\nReturn error %d\n", errorRrt);
+        } while (errorRrt > 0);
 
         new_node = createNode(userIn);
         head = insert_to_list(head, new_node);
-//        print_list()
+
 
     } while (errorRrt != 2);
 
@@ -83,21 +86,33 @@ void *insert_to_list(Node *head, Node *new_node) {
 
     Node *temp = head;
     int fail = 0;
-    Node *previous = NULL;
+    int firstinLine = 0;
+    Node *previous = head;
     while (temp != NULL) {
 
         printf("\n%s ", (char *) temp->data);
 
         if (strcmp((const char *) new_node->data, (const char *) temp->data) < 0) {
 
-            previous->next = new_node;
-            new_node->next = temp;
-            fail = fail + 1;
+            if(firstinLine==0){
+                new_node->next = head;
+                head = new_node;
+
+                fail = fail + 1;
+            }else{
+                previous->next = new_node;
+                new_node->next = temp;
+                fail = fail + 1;
+            }
+
+
+
             break;
 
         }
         previous = temp;
         temp = temp->next;
+        firstinLine = firstinLine+1;
 
     }
     printf("FAIL:%d", fail);
@@ -130,7 +145,13 @@ int checkError(char word2[]) {
         return 1;
     }
     for (int i = 0; i < strlen(word2); i++) {
-        if (word2[i] != 39 && word2[i] != 45 && (!isalpha(word2[i]))) {
+
+        printf("Len%d ",strlen(word2));
+        printf("%d ",word2[i]);
+
+        //todo
+        if (word2[i] != 39 && word2[i] != 45 && word2[i] != 32 && (!isalpha(word2[i]))) {
+
             return 1;
         }
     }

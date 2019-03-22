@@ -55,7 +55,9 @@ int main() {
     }
 
     char p2Guess[MAX_LEN];
+
     guess[strcspn(guess, "\r\n")] = 0;
+
     for (int i = 0; i < strlen(guess); i++) {
 
         p2Guess[i] = '_';
