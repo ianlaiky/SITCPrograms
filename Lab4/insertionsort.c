@@ -12,7 +12,9 @@ typedef struct node_struct {
 
 
 Node *createNode(char data[]);
-Node *insert_to_list(Node *head, Node *new_node);
+
+void *insert_to_list(Node *head, Node *new_node);
+
 Node *print_list(Node *head, char *text);
 
 int checkError(char word2[]);
@@ -22,7 +24,7 @@ int main() {
 
     char userIn[SIZE];
     int errorRrt = 0;
-
+    Node *head = NULL;
     do {
 
         Node *new_node;
@@ -37,7 +39,7 @@ int main() {
         } while (errorRrt != 0);
 
         new_node = createNode(userIn);
-        pointerToNode = insert_to_list(pointerToNode, new_node);
+        head = insert_to_list(head, new_node);
 //        print_list()
 
     } while (errorRrt != 2);
@@ -69,12 +71,54 @@ Node *print_list(Node *head, char *text) {
 }
 
 /* insert a node at the head of the list */
-Node *insert_to_list(Node *head, Node *new_node) {
+void *insert_to_list(Node *head, Node *new_node) {
+    if (head == NULL) {
+        return new_node;
+    }
 
+//    Node *temp1 = head;
+//    while (temp1->next != NULL)
+//        temp1 = temp1->next;
+//    temp1->next = new_node;
 
+    Node *temp = head;
+    int fail = 0;
+    Node *previous = NULL;
+    while (temp != NULL) {
 
-    new_node->next = head;
-    return new_node;
+        printf("\n%s ", (char *) temp->data);
+
+        if (strcmp((const char *) new_node->data, (const char *) temp->data) < 0) {
+
+            previous->next = new_node;
+            new_node->next = temp;
+            fail = fail + 1;
+            break;
+
+        }
+        previous = temp;
+        temp = temp->next;
+
+    }
+    printf("FAIL:%d", fail);
+    if (fail == 0) {
+        Node *tempta = head;
+        while (tempta->next != NULL)
+            tempta = tempta->next;
+        tempta->next = new_node;
+    }
+    printf("\nDATA IN LIST\n");
+    Node *tempp = head;
+    while (tempp != NULL) {
+        printf("%s ", (char *) tempp->data);
+        tempp = tempp->next;
+        printf("\n");
+    }
+
+    printf("\n");
+
+//    new_node->next = head;
+    return head;
 }
 
 
