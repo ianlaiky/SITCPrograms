@@ -70,11 +70,6 @@ void *insert_to_list(Node *head, Node *new_node) {
         return new_node;
     }
 
-//    Node *temp1 = head;
-//    while (temp1->next != NULL)
-//        temp1 = temp1->next;
-//    temp1->next = new_node;
-
     Node *temp = head;
     int fail = 0;
     int firstinLine = 0;
@@ -95,11 +90,7 @@ void *insert_to_list(Node *head, Node *new_node) {
                 new_node->next = temp;
                 fail = fail + 1;
             }
-
-
-
             break;
-
         }
         previous = temp;
         temp = temp->next;
