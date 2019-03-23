@@ -3,7 +3,7 @@
 //
 
 #include <stdio.h>
-#include <mem.h>
+#include <string.h>
 #include <ctype.h>
 
 
@@ -42,7 +42,7 @@ int main() {
     } while (boolCasesel == 0);
 
     userText[strcspn(userText, "\r\n")] = 0;
-    pattern[strcspn(pattern, "\r\n")] = 0;
+    pattern[strcspn(pattern, "\r\n")]  = 0;
 
     int pattern_length, userText_length;
 

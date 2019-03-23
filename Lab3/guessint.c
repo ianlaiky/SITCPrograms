@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include <mem.h>
+#include <string.h>
 
 #define CMAX_LEN 13
 
