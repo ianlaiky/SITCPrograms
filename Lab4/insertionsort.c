@@ -56,7 +56,7 @@ Node *createNode(char data[]) {
         strcpy((char *) new_node->data, data);
         new_node->next = NULL;
     }
-
+    return new_node;
 }
 
 
