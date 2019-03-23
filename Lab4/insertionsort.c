@@ -39,7 +39,9 @@ int main() {
 
 
         } while (errorRrt > 0);
-
+        if(errorRrt==2){
+            break;
+        }
         new_node = createNode(userIn);
         head = insert_to_list(head, new_node);
 
