@@ -15,7 +15,6 @@ Node *createNode(char data[]);
 
 void *insert_to_list(Node *head, Node *new_node);
 
-Node *print_list(Node *head, char *text);
 
 int checkError(char word2[]);
 
@@ -30,7 +29,7 @@ int main() {
         Node *new_node;
         Node *pointerToNode = NULL;
         do {
-            printf("Enter a character not more then 32 characters");
+            printf("Enter a character not more then 32 characters: ");
             fgets(userIn, SIZE, stdin);
             userIn[strcspn(userIn, "\r\n")] = 0;
             errorRrt = checkError(userIn);
@@ -38,7 +37,7 @@ int main() {
                 break;
             }
 
-            printf("\nReturn error %d\n", errorRrt);
+
         } while (errorRrt > 0);
 
         new_node = createNode(userIn);
@@ -61,21 +60,13 @@ Node *createNode(char data[]) {
 }
 
 
-/* print out ever eleent in the list */
-Node *print_list(Node *head, char *text) {
-    printf("%s: ", text);
-    Node *temp = head;
-    while (temp != NULL) {
-        printf("%s ", (char *) temp->data);
-        temp = temp->next;
-    }
-    printf("\n");
-    return head;
-}
-
 /* insert a node at the head of the list */
 void *insert_to_list(Node *head, Node *new_node) {
     if (head == NULL) {
+        printf("\nDATA IN LIST\n");
+        printf("%s", (char *) new_node->data);
+        printf("\n");
+
         return new_node;
     }
 
@@ -90,7 +81,7 @@ void *insert_to_list(Node *head, Node *new_node) {
     Node *previous = head;
     while (temp != NULL) {
 
-        printf("\n%s ", (char *) temp->data);
+
 
         if (strcmp((const char *) new_node->data, (const char *) temp->data) < 0) {
 
@@ -115,7 +106,7 @@ void *insert_to_list(Node *head, Node *new_node) {
         firstinLine = firstinLine+1;
 
     }
-    printf("FAIL:%d", fail);
+
     if (fail == 0) {
         Node *tempta = head;
         while (tempta->next != NULL)
@@ -146,10 +137,10 @@ int checkError(char word2[]) {
     }
     for (int i = 0; i < strlen(word2); i++) {
 
-        printf("Len%d ",strlen(word2));
-        printf("%d ",word2[i]);
 
-        //todo
+        if(word2[i]==' '){
+            return 1;
+        }
         if (word2[i] != 39 && word2[i] != 45 && word2[i] != 32 && (!isalpha(word2[i]))) {
 
             return 1;
