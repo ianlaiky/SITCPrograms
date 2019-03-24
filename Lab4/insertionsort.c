@@ -12,7 +12,7 @@ typedef struct node_struct {
 
 
 Node *createNode(char data[]);
-
+Node *free_list(Node *head);
 void *insert_to_list(Node *head, Node *new_node);
 
 
@@ -47,7 +47,7 @@ int main() {
 
 
     } while (errorRrt != 2);
-
+    free_list(head);
 
     return 0;
 }
@@ -140,4 +140,15 @@ int checkError(char word2[]) {
         }
     }
     return 0;
+}
+
+Node *free_list(Node *head) {
+    Node *temp = head;
+
+    while (temp != NULL) {
+        temp = temp->next;
+        free(head);
+        head = temp;
+    }
+    return NULL;
 }
