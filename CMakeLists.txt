@@ -3,4 +3,4 @@ project(CPrograms C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(CProgram Lab4/insertionsort.c)
+add_executable(CProgram Lab5/guessint.c)
