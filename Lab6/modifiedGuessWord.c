@@ -48,6 +48,7 @@ int insertWordIntoList(WORD_NODE **head, int length)
     {
         name[11] = (char)i;
         strcpy(filename, name);
+        printf("%s",filename);
         f = fopen(filename, "r");
 
         if (f == NULL)
