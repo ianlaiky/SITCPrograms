@@ -5,18 +5,40 @@
 #include <mem.h>
 
 
-int main(){
+int main() {
+    FILE *f;
 
-    char *a = "abcdef";
-    char b[7];
-    strcpy(b, a);
-    for (int i = 0; i < 3; i++)
-        b[i] = b[i] + 1;
-    b[3] = '\0';
+    f = fopen("data.txt","a+");
 
-    printf("%c",a[0]);
+    if(f==NULL){
+        printf("Could not open");
+        return 1;
+    }
+    int account;
+    printf("? ");
+    scanf("%d",&account);
+
+    while(account!=0){
+        char name[255];
+        float balance;
+
+        scanf("%19s%f",name,&balance);
+        printf("%s",name);
+        printf("%f",balance);
+        fprintf(f,"\n%d %s %f",account,name,balance);
+
+        printf("? ");
+        scanf("%d",&account);
+
+    }
 
 
+
+
+
+
+
+    fclose(f);
 
     return 0;
 }
